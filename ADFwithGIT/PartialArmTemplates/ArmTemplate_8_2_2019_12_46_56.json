@@ -1,0 +1,32 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory Name",
+			"defaultValue": "ADFwithGIT"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "https://swayamdatalake1212.azuredatalakestore.net/webhdfs/v1",
+					"tenant": "f66fae02-5d36-495b-bfe0-78a6ff9f8e6e",
+					"subscriptionId": "1a7e4673-7c19-4ee1-a116-29925082e56d",
+					"resourceGroupName": "Swayam_Resource"
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
